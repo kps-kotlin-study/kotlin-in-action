@@ -5,5 +5,6 @@ import com.project.agit.common.person.constant.Location
 data class Person(
     val name: String,
     val age: Int,
-    val location: Location
+    val location: Location,
+//    var location2: String
 )
