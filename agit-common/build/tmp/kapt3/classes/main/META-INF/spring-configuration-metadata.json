@@ -1,0 +1,27 @@
+{
+  "groups": [
+    {
+      "name": "agit.company",
+      "type": "com.project.agit.common.property.CompanyProperty",
+      "sourceType": "com.project.agit.common.property.CompanyProperty"
+    },
+    {
+      "name": "agit.person",
+      "type": "com.project.agit.common.property.PersonProperty",
+      "sourceType": "com.project.agit.common.property.PersonProperty"
+    }
+  ],
+  "properties": [
+    {
+      "name": "agit.company.list",
+      "type": "java.util.List<com.project.agit.common.company.dto.Company>",
+      "sourceType": "com.project.agit.common.property.CompanyProperty"
+    },
+    {
+      "name": "agit.person.list",
+      "type": "java.util.List<com.project.agit.common.person.dto.Person>",
+      "sourceType": "com.project.agit.common.property.PersonProperty"
+    }
+  ],
+  "hints": []
+}

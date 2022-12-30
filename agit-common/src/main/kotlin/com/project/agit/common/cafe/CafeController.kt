@@ -24,3 +24,4 @@ class CafeController {
         return ResponseEntity.ok().body("You have got just 1 coffee, then $coffeeCnt coffees left.")
     }
 }
+

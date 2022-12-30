@@ -19,6 +19,8 @@ buildscript {
 
 plugins {
     kotlin("plugin.allopen") version com.project.agit.common.Versions.kotlin
+    kotlin("plugin.noarg") version com.project.agit.common.Versions.kotlin
+
     kotlin("plugin.jpa") version com.project.agit.common.Versions.kotlin
     kotlin("jvm") version com.project.agit.common.Versions.kotlin
     kotlin("plugin.spring") version com.project.agit.common.Versions.kotlin
@@ -35,6 +37,10 @@ allOpen {
     annotation("javax.persistence.Entity")
     annotation("javax.persistence.MappedSuperclass")
     annotation("javax.persistence.Embeddable")
+}
+
+noArg {
+    annotation("javax.persistence.Entity")
 }
 
 allprojects {
@@ -87,6 +93,18 @@ subprojects {
     val architecture = System.getProperty("os.arch").toLowerCase()
 
     dependencies {
+
+        // --- for database
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        runtimeOnly("com.h2database:h2")
+
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        // ---
 
         implementation("org.springframework.boot:spring-boot-starter-actuator")
         implementation("org.springframework.boot:spring-boot-starter-web")
