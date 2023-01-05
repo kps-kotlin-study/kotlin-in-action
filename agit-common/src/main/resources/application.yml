@@ -1,10 +1,28 @@
 spring:
   application:
     name: agit-common
+
   config:
     import:
       - company-constant.yml
 
-springdoc:
-  api-docs:
-    path: /api-docs
+  h2:
+    console:
+      enabled: true
+      path: /h2-console # available with web-console localhost:8090/h2-console
+
+  datasource:
+    driver-class-name: "org.h2.Driver"
+    url: "jdbc:h2:mem:kakao_agit_life"
+    username: "sa"
+    password: "sa"
+
+  jpa:
+    show_sql: true
+    generate_ddl: false
+    hibernate:
+      ddl_auto: update # it will update the database schema based on the modifications in the domain model in our application
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
