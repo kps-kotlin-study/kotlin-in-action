@@ -8,6 +8,9 @@ gen
 
 ### Gradle template
 .gradle
+gradle
+gradlew
+gradlew.bat
 **/build/
 !src/**/build/
 
