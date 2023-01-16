@@ -1,7 +1,7 @@
 package com.project.agit.common.company
 
-import com.project.agit.common.company.dto.CompanyPropertyResponse
 import com.project.agit.common.company.dto.CompanyRequest
+import com.project.agit.common.company.dto.CompanyResponse
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -11,34 +11,34 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/v1/company")
-class CompanyController(
+@RequestMapping("/v2/company")
+class CompanyControllerV2(
     private val companyService: CompanyService
 ) {
 
     @GetMapping("/{company_id}")
     fun getCompany(
         @PathVariable("company_id") companyId: Long
-    ) = with(companyService.getCompanyProperty(companyId)) {
-        CompanyPropertyResponse.from(this)
+    ) = with(companyService.getCompany(companyId)) {
+        CompanyResponse.from(this)
     }
 
     @PostMapping("")
     fun registerCompany(
         @RequestBody request: CompanyRequest
-    ) = with(companyService.registerCompanyProperty(request)) {
-        CompanyPropertyResponse.from(this)
+    ) = with(companyService.registerCompany(request)) {
+        CompanyResponse.from(this)
     }
 
     @GetMapping("/info")
     fun getCompanyInfo(
         @RequestParam("company_name") companyName: String
-    ) = with(companyService.getCompanyInfoProperty(companyName)) {
-        CompanyPropertyResponse.from(this)
+    ) = with(companyService.getCompanyInfo(companyName)) {
+        CompanyResponse.from(this)
     }
 
     @GetMapping("/all")
-    fun getCompanyAll() = with(companyService.getCompanyAllProperty()) {
+    fun getCompanyAll() = with(companyService.getCompanyAll()) {
         this
     }
 }

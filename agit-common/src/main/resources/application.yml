@@ -1,9 +1,29 @@
 spring:
+  flyway:
+    enabled: false # flyway disable
   application:
     name: agit-common
   config:
     import:
       - company-constant.yml
+  jpa:
+    open-in-view: false # 영속성 유지 범위 지정 (default true)
+    database: mysql # db 연결정보
+    database-platform: org.hibernate.dialect.MySQL8Dialect # 데이터 플래폼을 지정
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+#      naming:
+#        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+#        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/agit?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: test
 
 springdoc:
   api-docs:

@@ -29,7 +29,7 @@ class CompanyPersonService(
 
         companyPersonList.add(
             CompanyPerson(
-                companyId = companyInfo!!.id,
+                companyId = companyInfo!!.getIdOrThrow(),
                 person = personInfo!!,
                 team = "", // TODO 회사별 팀 등록 필요
                 isJoin = true

@@ -1,5 +1,7 @@
 package com.project.agit.common.company.dto
 
+import com.project.agit.common.domain.company.Company
+
 data class CompanyResponse(
     val id: Long?,
     val name: String?,
