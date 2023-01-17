@@ -1,10 +1,10 @@
 package com.project.agit.common.company
 
 import com.project.agit.common.company.dto.CompanyJoinRequest
-import com.project.agit.common.company.dto.CompanyPerson
 import com.project.agit.common.company.dto.CompanyPersonResponse
+import com.project.agit.common.domain.company.CompanyPerson
+import com.project.agit.common.domain.person.Person
 import com.project.agit.common.person.PersonService
-import com.project.agit.common.person.dto.Person
 // import mu.KotlinLogging
 import org.springframework.stereotype.Service
 
@@ -13,13 +13,9 @@ import org.springframework.stereotype.Service
 @Service
 class CompanyPersonService(
     private val companyService: CompanyService,
-    private val personService: PersonService
+    private val personService: PersonService,
+    private val companyPersonRepository: CompanyPersonRepository
 ) {
-
-    companion object {
-        val companyPersonList = mutableListOf<CompanyPerson>()
-    }
-
     fun join(request: CompanyJoinRequest) {
         // 입사를 위한 전반적인 정보에 대해 체크
         validationCheck(request)
@@ -27,10 +23,10 @@ class CompanyPersonService(
         val personInfo = personService.getPersonInfo(request.personName)
         val companyInfo = companyService.getCompanyInfo(request.companyName)
 
-        companyPersonList.add(
+        companyPersonRepository.save(
             CompanyPerson(
                 companyId = companyInfo!!.getIdOrThrow(),
-                person = personInfo!!,
+                personId = personInfo!!.getIdOrThrow(),
                 team = "", // TODO 회사별 팀 등록 필요
                 isJoin = true
             )
@@ -42,8 +38,7 @@ class CompanyPersonService(
 
         val companyId = companyService.getCompanyInfo(companyName)!!.id
 
-        return companyPersonList
-            .filter { it.companyId == companyId }
+        return companyPersonRepository.findByCompanyId(companyId!!)
             .map(CompanyPerson::to)
             .toList()
     }
@@ -54,8 +49,7 @@ class CompanyPersonService(
         val personInfo = personService.getPersonInfo(personName)
         personValidationCheck(personInfo, personName)
 
-        return companyPersonList
-            .firstOrNull { it.person.name == personInfo!!.name }
+        return companyPersonRepository.findByPersonId(personInfo!!.id!!)
             ?: throw IllegalArgumentException("입사 이력이 존재하지 않습니다.")
     }
 
@@ -75,7 +69,7 @@ class CompanyPersonService(
         // 기존 입사 상태 체크
         // TODO 동명이인에 대한 케이스 처리 필요
         val companyPerson =
-            companyPersonList.firstOrNull { it.person.name == personInfo.name }
+            companyPersonRepository.findByPersonId(personInfo!!.id!!)
 
         require(
             companyPerson == null || !companyPerson.isJoin

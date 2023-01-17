@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/v2/company")
+@RequestMapping("/v1/company")
 class CompanyControllerV2(
     private val companyService: CompanyService
 ) {
