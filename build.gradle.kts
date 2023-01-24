@@ -94,12 +94,20 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter-actuator")
         implementation("org.springframework.boot:spring-boot-starter-web")
 
+        // db 설정
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        runtimeOnly("mysql:mysql-connector-java")
+
         kapt("org.springframework.boot:spring-boot-configuration-processor")
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
         implementation("org.jetbrains.kotlin:kotlin-reflect") // 런타임에 프로그램의 클래스를 확인하기 위해서 사용
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8") // kotlin standard library 사용
 
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin") // json 객체를 kotlin 객체로 읽고 쓰기 위해서 사용
+
+        // querydsl
+        implementation("com.querydsl:querydsl-jpa:${Versions.querydsl}")
+        kapt("com.querydsl:querydsl-apt:${Versions.querydsl}:jpa")
 
         // logging
         implementation("io.github.microutils:kotlin-logging-jvm:${Versions.kotlinLogging}")
