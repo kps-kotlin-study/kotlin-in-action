@@ -17,9 +17,6 @@ class CompanyCommuteService(
     private val personService: PersonService,
     private val companyCommuteRepository: CompanyCommuteRepository
 ) {
-//    companion object {
-//        val companyCommuteMap = mutableMapOf<String, MutableSet<String>>()
-//    }
 
     fun goToWorkCompany(request: CompanyCommuteRequest) {
 
