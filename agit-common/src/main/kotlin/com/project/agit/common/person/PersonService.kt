@@ -20,12 +20,18 @@ class PersonService(
     }
 
     fun changePersonInfo(person: Person, request: PersonRequest) {
+        log.info {
+            "Change Location >>>>> " +
+                "person : $person" +
+                "request : $request"
+        }
         personRepository.save(
-            Person(
-                name = person.name,
+            person.copy(
                 age = request.age ?: person.age,
                 location = request.location ?: person.location
-            )
+            ).apply {
+                id = person.id
+            }
         )
     }
 

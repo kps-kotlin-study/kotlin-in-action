@@ -1,31 +1,31 @@
 package com.project.agit.common.company
 
-import com.project.agit.common.domain.company.CompanyPerson
-import com.project.agit.common.domain.company.QCompanyPerson.companyPerson
+import com.project.agit.common.domain.company.CompanyCommute
+import com.project.agit.common.domain.company.QCompanyCommute.companyCommute
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface CompanyPersonRepository :
-    JpaRepository<CompanyPerson, Long>, CompanyPersonRepositoryCustom
+interface CompanyCommuteRepository :
+    JpaRepository<CompanyCommute, Long>, CompanyCommuteRepositoryCustom
 
-interface CompanyPersonRepositoryCustom {
-    fun findByCompanyId(companyId: Long): List<CompanyPerson>
-    fun findByPersonId(personId: Long): CompanyPerson?
+interface CompanyCommuteRepositoryCustom {
+    fun findByCompanyNameAndCommutePerson(companyName: String, personName: String): CompanyCommute?
+    fun findAllByCompanyName(companyName: String): List<CompanyCommute>
 }
 
-class CompanyPersonRepositoryCustomImpl(
+class CompanyCommuteRepositoryCustomImpl(
     private val jpaQueryFactory: JPAQueryFactory
-) : CompanyPersonRepositoryCustom {
-
-    override fun findByCompanyId(companyId: Long): List<CompanyPerson> {
-        return jpaQueryFactory.selectFrom(companyPerson)
-            .where(companyPerson.companyId.eq(companyId))
-            .fetch()
+) : CompanyCommuteRepositoryCustom {
+    override fun findByCompanyNameAndCommutePerson(companyName: String, personName: String): CompanyCommute? {
+        return jpaQueryFactory.selectFrom(companyCommute)
+            .where(
+                companyCommute.companyName.eq(companyName),
+                companyCommute.personName.eq(personName)
+            ).fetchOne()
     }
 
-    override fun findByPersonId(personId: Long): CompanyPerson? {
-        return jpaQueryFactory.selectFrom(companyPerson)
-            .where(companyPerson.personId.eq(personId))
-            .fetchOne()
+    override fun findAllByCompanyName(companyName: String): List<CompanyCommute> {
+        return jpaQueryFactory.selectFrom(companyCommute)
+            .where(companyCommute.companyName.eq(companyName)).fetch()
     }
 }
