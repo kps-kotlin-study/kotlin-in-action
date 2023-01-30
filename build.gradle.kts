@@ -121,6 +121,7 @@ subprojects {
         // db 설정
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
         runtimeOnly("mysql:mysql-connector-java")
+        runtimeOnly("com.h2database:h2")
 
         kapt("org.springframework.boot:spring-boot-configuration-processor")
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
@@ -153,6 +154,7 @@ subprojects {
         testImplementation("io.mockk:mockk:${Versions.mockk}")
         testImplementation("com.ninja-squad:springmockk:${Versions.springMockk}")
         testImplementation("io.kotest:kotest-runner-junit5:${Versions.kotest}")
+        testImplementation("io.kotest.extensions:kotest-extensions-spring:${Versions.kotestExtensions}")
 
         testImplementation("com.squareup.okhttp3:okhttp:${Versions.okhttp3}")
         testImplementation("com.squareup.okhttp3:mockwebserver:${Versions.okhttp3}")
