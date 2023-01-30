@@ -4,7 +4,7 @@ services:
   agit-db:
     container_name: agit-mysql
     image: mysql:8.0.22
-    platform: linux/amd64
+#    platform: linux/amd64
     volumes:
       - ./custom.cnf:/etc/mysql/conf.d/custom.cnf
       - ./init/:/docker-entrypoint-initdb.d/
@@ -13,4 +13,4 @@ services:
       MYSQL_ROOT_PASSWORD: test
       MYSQL_DATABASE: agit
     ports:
-      - 3306:3306
+      - 3307:3306

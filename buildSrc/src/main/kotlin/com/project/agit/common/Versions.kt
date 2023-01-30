@@ -33,6 +33,7 @@ object Versions {
     const val mockk = "1.12.3"
     const val springMockk = "3.1.1"
     const val kotest = "5.3.0"
+    const val kotestExtensions = "1.1.2"
     const val okhttp3 = "4.10.0"
     const val jacoco = "0.8.8"
 }
