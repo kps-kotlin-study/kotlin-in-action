@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody
 @RestController
 @RequestMapping("/v1/user")
 class UserController(private val userService: UserService) {
-
     @GetMapping("/")
     fun getAllUsers(): List<User> = userService.getAllUsers()
 
     @GetMapping("/{id}")
-    fun getUsersById(@PathVariable("id") userId: Long): User = userService.getUsersById(userId)
+    fun getUsesById(@PathVariable("id") userId: Long): User = userService.getUserById(userId)
+
+    @GetMapping("/{name}")
+    fun getUserByName(@PathVariable("name") userName: String): User = userService.getUserByName(userName)
 
     @PostMapping("/")
     fun createUser(@RequestBody payload: User): User = userService.createUser(payload)
@@ -29,5 +31,5 @@ class UserController(private val userService: UserService) {
     fun updateUserById(@PathVariable("id") userId: Long, @RequestBody payload: User): User = userService.updateUserById(userId, payload)
 
     @DeleteMapping("/{id}")
-    fun deleteUsersById(@PathVariable("id") userId: Long): Unit = userService.deleteUsersById(userId)
+    fun deleteUserById(@PathVariable("id") userId: Long): Unit = userService.deleteUserById(userId)
 }

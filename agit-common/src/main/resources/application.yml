@@ -1,3 +1,7 @@
+springdoc:
+  api-docs:
+    path: /api-docs
+
 spring:
   application:
     name: agit-common
@@ -13,9 +17,9 @@ spring:
 
   datasource:
     driver-class-name: "org.h2.Driver"
-    url: "jdbc:h2:mem:kakao_agit_life"
-    username: "sa"
-    password: "sa"
+    url: "jdbc:h2:mem:agit"
+    username: "root"
+    password: "agit"
 
   jpa:
     show_sql: true
