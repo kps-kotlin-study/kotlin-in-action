@@ -6,10 +6,9 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
-
 @Entity
-@Table(name = "cafe")
-data class Cafe (
+@Table(name = "order")
+data class Order (
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long?,
 

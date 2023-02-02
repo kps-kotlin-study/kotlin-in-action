@@ -21,8 +21,8 @@ class UserController(private val userService: UserService) {
     @GetMapping("/{id}")
     fun getUsesById(@PathVariable("id") userId: Long): User = userService.getUserById(userId)
 
-    @GetMapping("/{name}")
-    fun getUserByName(@PathVariable("name") userName: String): User = userService.getUserByName(userName)
+    @GetMapping("/name/{name}")
+    fun getUserByName(@PathVariable("name") userName: String): User? = userService.getUserByName(userName)
 
     @PostMapping("/")
     fun createUser(@RequestBody payload: User): User = userService.createUser(payload)

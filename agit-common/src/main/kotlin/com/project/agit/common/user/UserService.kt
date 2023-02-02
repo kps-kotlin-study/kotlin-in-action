@@ -1,19 +1,39 @@
 package com.project.agit.common.user
 
+import com.project.agit.common.person.dto.Person
+import com.project.agit.common.property.UserProperty
 import com.project.agit.common.user.model.User
 import org.springframework.http.HttpStatus
 import com.project.agit.common.user.UserNotFoundException
 import com.project.agit.common.user.UserRepository
 import org.springframework.stereotype.Service
 
+import com.querydsl.jpa.impl.JPAQuery
+import com.querydsl.core.types.dsl.BooleanExpression
+import javax.persistence.EntityManager
+import javax.print.attribute.standard.RequestingUserName
+
 @Service
-class UserService(private val userRepository: UserRepository) {
+class UserService(
+    private val userRepository: UserRepository,
+    private val entityManager: EntityManager
+//    private val userProperty: UserProperty
+) {
+//    fun getUserByName(userName: String): User? {
+//        return userProperty.userlist.first { it.name == userName }
+//    }
+
+//    fun getUserByName(userName: String): List<User> {
+//        val query = JPAQuery<User>(entityManager)
+//        val user = QUser.user
+//
+//        return query.from(user)
+//            .where(user.name.eq(userName))
+//            .fetch()
+//    }
+    fun getUserByName(userName: String): User? = userRepository.findByName(userName)
     fun getAllUsers(): List<User> = userRepository.findAll()
     fun getUserById(userId: Long): User = userRepository.findById(userId)
-        .orElseThrow {
-            UserNotFoundException(HttpStatus.NOT_FOUND, "No matching user was found")
-        }
-    fun getUserByName(userName: String): User = userRepository.findById(100)
         .orElseThrow {
             UserNotFoundException(HttpStatus.NOT_FOUND, "No matching user was found")
         }
