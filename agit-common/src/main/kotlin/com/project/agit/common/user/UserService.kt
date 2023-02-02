@@ -1,17 +1,9 @@
 package com.project.agit.common.user
 
-import com.project.agit.common.person.dto.Person
-import com.project.agit.common.property.UserProperty
 import com.project.agit.common.user.model.User
 import org.springframework.http.HttpStatus
-import com.project.agit.common.user.UserNotFoundException
-import com.project.agit.common.user.UserRepository
 import org.springframework.stereotype.Service
-
-import com.querydsl.jpa.impl.JPAQuery
-import com.querydsl.core.types.dsl.BooleanExpression
 import javax.persistence.EntityManager
-import javax.print.attribute.standard.RequestingUserName
 
 @Service
 class UserService(
@@ -37,7 +29,7 @@ class UserService(
         .orElseThrow {
             UserNotFoundException(HttpStatus.NOT_FOUND, "No matching user was found")
         }
-    fun createUser(user: User): User = userRepository.save(user)
+    fun createUser(user: List<User>): List<User> = userRepository.saveAll(user)
     fun updateUserById(userId: Long, user: User): User {
         return if (userRepository.existsById(userId)) {
             userRepository.save(

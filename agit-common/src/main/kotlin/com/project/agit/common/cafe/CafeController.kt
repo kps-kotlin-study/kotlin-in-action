@@ -1,26 +1,26 @@
 package com.project.agit.common.cafe
 
-// import org.springframework.web.bind.annotation.GetMapping
-// import org.springframework.web.bind.annotation.PostMapping
-// import org.springframework.web.bind.annotation.RequestMapping
-// import org.springframework.web.bind.annotation.RestController
-import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import com.project.agit.common.cafe.model.Order
+import com.project.agit.common.cafe.model.Product
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/v1/cafe")
-class CafeController {
+class CafeController (
+    private val cafeService: CafeService
+)
+{
+    @PostMapping("/product")
+    fun createProduct(@RequestBody payload: List<Product>): List<Product> = cafeService.addProduct(payload)
     @GetMapping("/menu")
-    fun showMenu(): Int {
-        return CafeService().getCoffeeCount()
-    }
+    fun getMenuAll(): List<Product> = cafeService.getMenuAll()
 
     @PostMapping("/order")
-    fun order(): ResponseEntity<Any> {
-        val coffeeCnt = CafeService().orderCoffee()
-        return ResponseEntity.ok().body("You have got just 1 coffee, then $coffeeCnt coffees left.")
-    }
+    fun createOrder(@RequestBody payload: Order): Order = cafeService.order(payload)
+
+    @GetMapping("/orderlist")
+    fun getOrderAll(): List<Order> = cafeService.getOrderAll()
+
+    @GetMapping("/order/user/{id}")
+    fun getUserOrderList(@PathVariable("id") userId: Long): List<Order> = cafeService.getOrderByUser(userId)
 }

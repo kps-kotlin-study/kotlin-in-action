@@ -1,22 +1,24 @@
 package com.project.agit.common.cafe.model
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Table
+import java.time.ZonedDateTime
+import javax.persistence.*
+
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 data class Order (
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long?,
 
-    @Column(name = "name", unique = true, nullable = false)
-    val name: String,
+    @Column(name = "user_id", nullable = false)
+    val userId: Long,
 
-    @Column(name = "age", nullable = false)
-    val age: Int
+    @Column(name = "product_id", nullable = false)
+    val productId: Long,
+
+    @Column(name = "created_at", nullable = false)
+    val createdAt: ZonedDateTime? = ZonedDateTime.now()
 ) {
-    constructor() : this (0)
+    constructor() : this (0, 0, 0)
 }
+
+
