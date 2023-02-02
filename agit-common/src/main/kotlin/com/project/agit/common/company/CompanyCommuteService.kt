@@ -94,4 +94,9 @@ class CompanyCommuteService(
         return companyCommuteRepository.findByCompanyNameAndCommutePerson(companyName, personName)?.personName
             ?: throw IllegalArgumentException("$personName 은 $companyName 회사 출근 이력에서 찾을 수 없습니다.")
     }
+
+    fun getCommutePersonName(personName: String): CompanyCommute? {
+        return companyCommuteRepository.findByPersonName(personName)
+            ?: throw IllegalArgumentException("${personName}을 찾을 수 없습니다.")
+    }
 }

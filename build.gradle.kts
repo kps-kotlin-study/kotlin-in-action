@@ -70,6 +70,7 @@ subprojects {
         plugin("kotlin")
         plugin("kotlin-spring")
         plugin("kotlin-kapt")
+        plugin("kotlin-jpa")
         plugin("org.springframework.boot")
         plugin("io.spring.dependency-management")
         plugin("org.jlleitschuh.gradle.ktlint")
