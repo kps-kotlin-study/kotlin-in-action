@@ -64,12 +64,14 @@ allprojects {
 
 subprojects {
 
+    val querydslVersion = "5.0.0" //querydsl
+
     apply {
         plugin("idea")
         plugin("java")
         plugin("kotlin")
         plugin("kotlin-spring")
-        plugin("kotlin-kapt")
+        plugin("kotlin-kapt") // querydsl
         plugin("org.springframework.boot")
         plugin("io.spring.dependency-management")
         plugin("org.jlleitschuh.gradle.ktlint")
@@ -90,6 +92,28 @@ subprojects {
     val architecture = System.getProperty("os.arch").toLowerCase()
 
     dependencies {
+
+        //querydsl
+        implementation("com.querydsl:querydsl-jpa:$querydslVersion")
+        kapt("com.querydsl:querydsl-apt:$querydslVersion:jpa")
+        kapt("org.springframework.boot:spring-boot-configuration-processor")
+
+        // --- for database
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+        // querydsl
+        implementation("com.querydsl:querydsl-jpa:$querydslVersion")
+        implementation("com.querydsl:querydsl-apt:$querydslVersion:jpa")
+
+        runtimeOnly("com.h2database:h2")
+
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        // ---
 
         implementation("org.springframework.boot:spring-boot-starter-actuator")
         implementation("org.springframework.boot:spring-boot-starter-web")

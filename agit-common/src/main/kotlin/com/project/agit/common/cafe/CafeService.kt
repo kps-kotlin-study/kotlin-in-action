@@ -1,16 +1,23 @@
 package com.project.agit.common.cafe
 
-class CafeService {
-    companion object {
-        var coffee = 100
-    }
+import com.project.agit.common.cafe.model.Order
+import com.project.agit.common.cafe.model.Product
 
-    fun getCoffeeCount(): Int {
-        return coffee
-    }
+import org.springframework.stereotype.Service
 
-    fun orderCoffee(): Int {
-        coffee -= 1
-        return this.getCoffeeCount()
-    }
+@Service
+class CafeService (
+    private val orderRepository: OrderRepository,
+    private val productRepository: ProductRepository
+) {
+    fun addProduct(product: List<Product>): List<Product> = productRepository.saveAll(product)
+    fun getMenuAll(): List<Product> = productRepository.findAll()
+
+    fun order(order: Order): Order = orderRepository.save(order)
+
+    fun getOrderAll(): List<Order> = orderRepository.findAll()
+
+    fun getOrderByUser(userId: Long): List<Order> = orderRepository.findOrderByUserId(userId)
 }
+
+
