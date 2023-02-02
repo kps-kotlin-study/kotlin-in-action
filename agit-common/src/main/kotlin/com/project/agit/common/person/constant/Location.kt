@@ -5,6 +5,8 @@ enum class Location(
 ) {
     LOBBY("로비"),
     CAFE("메인카페"),
+    KAKAO("카카오"),
+    KAKAO_PAY("카카오페이"),
     KAKAO_PAY_SEC("카카오페이증권"),
     KAKAO_FRIENDS_SHOP("카카오프렌즈샵")
     ;

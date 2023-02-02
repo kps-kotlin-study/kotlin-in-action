@@ -78,3 +78,10 @@ $ ./gradlew ktlintFormat
 ```bash
 http://localhost:8080/swagger-ui/index.html
 ```
+
+## QueryDsl 사용
+-- --
+### QClass 파일 만들기
+```bash
+$ ./gradlew :agit-common:clean :agit-common:compileKotlin
+```
