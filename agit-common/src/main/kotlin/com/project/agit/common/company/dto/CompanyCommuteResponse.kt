@@ -5,11 +5,10 @@ data class CompanyCommuteResponse(
     val personName: String
 ) {
     companion object {
-        fun from(companyName: String, personName: String) {
+        fun from(companyName: String, personName: String) =
             CompanyCommuteResponse(
                 companyName = companyName,
                 personName = personName
             )
-        }
     }
 }

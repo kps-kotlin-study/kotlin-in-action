@@ -6,7 +6,9 @@ import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface CompanyCommuteRepository :
-    JpaRepository<CompanyCommute, Long>, CompanyCommuteRepositoryCustom
+    JpaRepository<CompanyCommute, Long>, CompanyCommuteRepositoryCustom {
+    fun findByPersonName(personName: String): CompanyCommute?
+}
 
 interface CompanyCommuteRepositoryCustom {
     fun findByCompanyNameAndCommutePerson(companyName: String, personName: String): CompanyCommute?
