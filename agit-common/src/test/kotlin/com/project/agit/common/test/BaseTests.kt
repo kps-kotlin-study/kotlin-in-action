@@ -1,6 +1,8 @@
 package com.project.agit.common.test
 
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.Import
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
 
@@ -14,4 +16,11 @@ annotation class TestEnvironment
 @Retention(AnnotationRetention.RUNTIME)
 @DataJpaTest
 @TestEnvironment
+@Import(TestConfig::class)
 annotation class RepositoryTest
+
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+@SpringBootTest
+@TestEnvironment
+annotation class IntegrationTest
