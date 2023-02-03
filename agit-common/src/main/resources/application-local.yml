@@ -2,8 +2,26 @@ spring:
   config:
     activate:
       on-profile: local
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/agit?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true
+#    username: root
+#    password: test
+  h2:
+    console:
+      enabled: true
+      path: /h2-console # available with web-console localhost:8090/h2-console
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/agit?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: test
+    driver-class-name: "org.h2.Driver"
+    url: "jdbc:h2:mem:agit"
+    username: "root"
+    password: "agit"
+  jpa:
+    show_sql: true
+    generate_ddl: false
+    hibernate:
+      ddl_auto: update # it will update the database schema based on the modifications in the domain model in our application
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true

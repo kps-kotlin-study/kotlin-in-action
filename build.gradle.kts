@@ -93,47 +93,28 @@ subprojects {
     val architecture = System.getProperty("os.arch").toLowerCase()
 
     dependencies {
-
-        //querydsl
-        implementation("com.querydsl:querydsl-jpa:$querydslVersion")
-        kapt("com.querydsl:querydsl-apt:$querydslVersion:jpa")
-        kapt("org.springframework.boot:spring-boot-configuration-processor")
-
-        // --- for database
+        // spring-boot
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-
-        // querydsl
-        implementation("com.querydsl:querydsl-jpa:$querydslVersion")
-        implementation("com.querydsl:querydsl-apt:$querydslVersion:jpa")
-
-        runtimeOnly("com.h2database:h2")
-
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-        implementation("org.jetbrains.kotlin:kotlin-reflect")
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        developmentOnly("org.springframework.boot:spring-boot-devtools")
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
-        // ---
-
         implementation("org.springframework.boot:spring-boot-starter-actuator")
-        implementation("org.springframework.boot:spring-boot-starter-web")
-
-        // db 설정
-        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-        runtimeOnly("mysql:mysql-connector-java")
-        runtimeOnly("com.h2database:h2")
-
         kapt("org.springframework.boot:spring-boot-configuration-processor")
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-        implementation("org.jetbrains.kotlin:kotlin-reflect") // 런타임에 프로그램의 클래스를 확인하기 위해서 사용
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8") // kotlin standard library 사용
-
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin") // json 객체를 kotlin 객체로 읽고 쓰기 위해서 사용
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
 
         // querydsl
         implementation("com.querydsl:querydsl-jpa:${Versions.querydsl}")
         kapt("com.querydsl:querydsl-apt:${Versions.querydsl}:jpa")
+//        implementation("com.querydsl:querydsl-apt:${Versions.querydsl}:jpa")
+
+        runtimeOnly("com.h2database:h2")
+        runtimeOnly("mysql:mysql-connector-java")
+
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+        implementation("org.jetbrains.kotlin:kotlin-reflect") // 런타임에 프로그램의 클래스를 확인하기 위해서 사용
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8") // kotlin standard library 사용
+
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin") // json 객체를 kotlin 객체로 읽고 쓰기 위해서 사용
 
         // logging
         implementation("io.github.microutils:kotlin-logging-jvm:${Versions.kotlinLogging}")

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/v1/user")
 class UserController(private val userService: UserService) {
-    @GetMapping("/")
+    @GetMapping("")
     fun getAllUsers(): List<User> = userService.getAllUsers()
 
     @GetMapping("/{id}")
