@@ -6,7 +6,7 @@ import javax.persistence.Entity
 
 @Entity
 data class Company(
-    var name: String = "",
+    val name: String,
     var type: String = ""
 ) : BaseEntity() {
     fun to(): CompanyResponse =

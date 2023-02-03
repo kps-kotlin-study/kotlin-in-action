@@ -44,4 +44,11 @@ class CompanyCommuteController(
     ) = with(companyCommuteService.getCommutePerson(companyName, personName)) {
         CompanyCommuteResponse.from(companyName, this)
     }
+
+    @GetMapping("/person/name")
+    fun getCommutePersonName(
+        @RequestParam("person_name") personName: String
+    ) = with(companyCommuteService.getCommutePersonName(personName)) {
+        CompanyCommuteResponse.from(this!!.companyName, this!!.personName)
+    }
 }
