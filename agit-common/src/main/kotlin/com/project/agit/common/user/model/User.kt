@@ -1,11 +1,6 @@
 package com.project.agit.common.user.model
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 
 @Entity
@@ -31,6 +26,4 @@ data class User (
 
     @Column(name = "email", unique = true, nullable = false)
     val email: String
-) {
-    constructor() : this (0, "", 0, "", "", "", "")
-}
+)
