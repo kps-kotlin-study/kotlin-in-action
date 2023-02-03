@@ -72,6 +72,7 @@ subprojects {
         plugin("kotlin")
         plugin("kotlin-spring")
         plugin("kotlin-kapt") // querydsl
+        plugin("kotlin-jpa")
         plugin("org.springframework.boot")
         plugin("io.spring.dependency-management")
         plugin("org.jlleitschuh.gradle.ktlint")
@@ -135,6 +136,7 @@ subprojects {
         testImplementation("io.mockk:mockk:${Versions.mockk}")
         testImplementation("com.ninja-squad:springmockk:${Versions.springMockk}")
         testImplementation("io.kotest:kotest-runner-junit5:${Versions.kotest}")
+        testImplementation("io.kotest.extensions:kotest-extensions-spring:${Versions.kotestExtensions}")
 
         testImplementation("com.squareup.okhttp3:okhttp:${Versions.okhttp3}")
         testImplementation("com.squareup.okhttp3:mockwebserver:${Versions.okhttp3}")

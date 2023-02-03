@@ -6,8 +6,8 @@ import javax.persistence.Entity
 
 @Entity
 data class CompanyCommute(
-    val companyName: String = "",
-    val personName: String = ""
+    val companyName: String,
+    val personName: String
 ) : BaseEntity() {
     fun to(): CompanyCommuteResponse =
         CompanyCommuteResponse(

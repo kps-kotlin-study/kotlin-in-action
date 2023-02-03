@@ -6,8 +6,8 @@ import javax.persistence.Entity
 
 @Entity
 data class CompanyPerson(
-    val companyId: Long = 0L,
-    val personId: Long = 0L,
+    val companyId: Long,
+    val personId: Long,
     var team: String? = "",
     var isJoin: Boolean = false
 ) : BaseEntity() {

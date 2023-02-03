@@ -4,7 +4,7 @@ services:
   agit-db:
     container_name: agit-mysql
     image: mysql:8.0.22
-    platform: linux/amd64
+#    platform: linux/amd64
     volumes:
       - ./custom.cnf:/etc/mysql/conf.d/custom.cnf
       - ./init/:/docker-entrypoint-initdb.d/
