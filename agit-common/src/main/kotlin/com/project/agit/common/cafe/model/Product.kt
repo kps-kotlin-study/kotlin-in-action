@@ -3,7 +3,7 @@ package com.project.agit.common.cafe.model
 import javax.persistence.*
 
 @Entity
-@Table(name = "product")
+@Table(name = "cafe_product")
 data class Product (
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long?,

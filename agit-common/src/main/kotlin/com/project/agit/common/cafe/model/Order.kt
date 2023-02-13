@@ -4,7 +4,7 @@ import java.time.ZonedDateTime
 import javax.persistence.*
 
 @Entity
-@Table(name = "orders")
+@Table(name = "cafe_order")
 data class Order (
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long?,

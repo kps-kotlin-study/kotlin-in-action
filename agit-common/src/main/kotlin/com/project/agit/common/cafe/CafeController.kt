@@ -12,6 +12,7 @@ class CafeController (
 {
     @PostMapping("/product")
     fun createProduct(@RequestBody payload: List<Product>): List<Product> = cafeService.addProduct(payload)
+
     @GetMapping("/menu")
     fun getMenuAll(): List<Product> = cafeService.getMenuAll()
 
