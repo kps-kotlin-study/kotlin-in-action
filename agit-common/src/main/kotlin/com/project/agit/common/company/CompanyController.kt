@@ -2,18 +2,16 @@ package com.project.agit.common.company
 
 import com.project.agit.common.company.dto.CompanyPropertyResponse
 import com.project.agit.common.company.dto.CompanyRequest
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import com.project.agit.common.user.UserService
+import com.project.agit.common.user.model.User
+import org.springframework.web.bind.annotation.*
+
 
 @RestController
 @RequestMapping("/v2/company")
 class CompanyController(
     private val companyService: CompanyService
+    , private val userService: UserService
 ) {
 
     @GetMapping("/{company_id}")
@@ -22,6 +20,18 @@ class CompanyController(
     ) = with(companyService.getCompanyProperty(companyId)) {
         CompanyPropertyResponse.from(this)
     }
+
+    @PostMapping("/checkin/{user_id}")
+    fun checkIn (
+        @PathVariable("user_id") userId: Long,
+        @RequestBody payload: User
+    ): User = userService.updateUserById(userId, payload)
+
+    @PostMapping("/checkout/{user_id}")
+    fun checkOut (
+        @PathVariable("user_id") userId: Long,
+        @RequestBody payload: User
+    ): User = userService.updateUserById(userId, payload)
 
     @PostMapping("")
     fun registerCompany(
